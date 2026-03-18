@@ -445,28 +445,7 @@ async function buscar(){
   document.getElementById('errorBox').classList.remove('visible');
 
   try {
-    const prompt = `Eres un orientador vocacional colombiano experto. Para la profesión "${prof}", genera exactamente 9 habilidades o skills relevantes para ese perfil profesional.
-
-Clasifica cada skill en uno de estos 3 niveles de prioridad:
-- "high": Indispensable (3 skills) — habilidades sin las cuales no se puede ejercer la profesión
-- "mid": Importante (3 skills) — habilidades que potencian significativamente el perfil
-- "low": Complementario (3 skills) — habilidades que suman valor pero no son críticas
-
-Responde ÚNICAMENTE con un JSON válido, sin texto adicional, sin markdown, sin explicaciones. El formato exacto es:
-{
-  "profesion": "nombre normalizado de la profesión",
-  "skills": [
-    {"label": "nombre corto del skill (máx 40 caracteres)", "level": "high", "hint": "explicación breve de por qué este nivel (1 oración)"},
-    {"label": "...", "level": "high", "hint": "..."},
-    {"label": "...", "level": "high", "hint": "..."},
-    {"label": "...", "level": "mid", "hint": "..."},
-    {"label": "...", "level": "mid", "hint": "..."},
-    {"label": "...", "level": "mid", "hint": "..."},
-    {"label": "...", "level": "low", "hint": "..."},
-    {"label": "...", "level": "low", "hint": "..."},
-    {"label": "...", "level": "low", "hint": "..."}
-  ]
-}`;
+    const prompt = "Para la profesion " + prof + " genera exactamente 9 skills profesionales. Responde SOLO con JSON valido sin markdown. Formato: {profesion:string, skills:[{label:string max 40 chars,level:high o mid o low,hint:string 1 oracion}]} Necesito exactamente 3 skills level high (indispensables), 3 level mid (importantes), 3 level low (complementarios). El hint explica por que ese nivel en espanol.";
 
     const GEMINI_KEY = 'AIzaSyBcB-U9vrj2dpCFV7bvhPWz_jJbJOHLJhQ';
     const res = await fetch(
